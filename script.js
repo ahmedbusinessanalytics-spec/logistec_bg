@@ -1,6 +1,6 @@
 const cv=document.getElementById('c'),ctx=cv.getContext('2d');let W,H,S,OX,OY,D,now=0;const C=.866;
-function rs(){D=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;cv.width=Math.round(W*D);cv.height=Math.round(H*D);cv.style.width=W+'px';cv.style.height=H+'px';
- S=W>=H?Math.max(W/74,H/44):Math.max(W/40,H/60);OX=W/2;OY=H/2-23*S}
+function rs(){D=Math.min(devicePixelRatio||1,2);W=visualViewport?.width||innerWidth;H=visualViewport?.height||innerHeight;cv.width=Math.round(W*D);cv.height=Math.round(H*D);cv.style.width=W+'px';cv.style.height=H+'px';
+ S=W>=H?Math.min(W/74,H/45):Math.min(W/40,H/46);OX=W/2;OY=H/2-23*S}
 addEventListener('resize',rs);addEventListener('orientationchange',()=>setTimeout(rs,150));if(window.visualViewport)visualViewport.addEventListener('resize',rs);rs();
 const p=(x,y,z)=>[OX+(x-y)*C*S,OY+(x+y)*.5*S-(z||0)*S];
 const rgb=(c,k)=>'rgb('+c.map(v=>Math.max(0,Math.min(255,v*k|0))).join()+')';
